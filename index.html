@@ -3,25 +3,32 @@
   <head>
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
   </head>
-  <body>
-    <script>
+  <script>
+    $(document).ready(function(){
+      var $body = $('body');
+      $body.html('');
 
-      $(document).ready(function(){
-        var $body = $('body');
-        $body.html('');
-
+      var index = streams.home.length - 1;
+      while(index >= 0){
+        var tweet = streams.home[index];
+        var $tweet = $('<div class="tweet"></div>');
+        $tweet.text('@' + tweet.user + ': ' + tweet.message + ' - ' + tweet.created_at);
+        $tweet.appendTo($body);
+        index -= 1;
+      }
+    
+      setInterval(function(){
         var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
-          var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
-          $tweet.appendTo($body);
-          index -= 1;
-        }
+        var newTweet = streams.home[index];
+        var $newTweet = $('<div class="newTweet"></div>');
+        $newTweet.text('@' + newTweet.user + ': ' + newTweet.message + ' - ' + newTweet.created_at);
+        $newTweet.prependTo('body');
+      },4000);
 
-      });
-
+    });
     </script>
+  <body>
   </body>
 </html>

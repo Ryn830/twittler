@@ -1,8 +1,19 @@
 body {
-	background-color: grey;
 	font: helvetica;
 	font-size: 15px;
 }
-div {
+
+.tweet {
 	padding: 5px;
+	background: yellow;
+	border: 2px;
+	border-radius: 5px;
 }
+
+.newTweet {
+	padding: 5px;
+	background: blue;
+	border: 2px;
+	border-radius: 5px;
+}
+
