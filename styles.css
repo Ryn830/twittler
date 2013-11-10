@@ -1,19 +1,21 @@
 body {
-	font: helvetica;
-	font-size: 15px;
+	font-family: "Verdana";
+	font-size: 12px;
 }
 
 .tweet {
 	padding: 5px;
-	background: yellow;
+	background: lightgreen;
 	border: 2px;
 	border-radius: 5px;
+	margin-bottom: 2px;
 }
 
 .newTweet {
 	padding: 5px;
-	background: blue;
+	background: lightblue;
 	border: 2px;
 	border-radius: 5px;
+	margin-bottom: 2px;
 }
 

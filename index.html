@@ -13,7 +13,8 @@
       var index = streams.home.length - 1;
       while(index >= 0){
         var tweet = streams.home[index];
-        var $tweet = $('<div class="tweet"></div>');
+        var $tweet = $('<div class="tweet" data-user=' + tweet.user + '></div>');
+
         $tweet.text('@' + tweet.user + ': ' + tweet.message + ' - ' + tweet.created_at);
         $tweet.appendTo($body);
         index -= 1;
@@ -21,11 +22,29 @@
     
       setInterval(function(){
         var index = streams.home.length - 1;
-        var newTweet = streams.home[index];
-        var $newTweet = $('<div class="newTweet"></div>');
-        $newTweet.text('@' + newTweet.user + ': ' + newTweet.message + ' - ' + newTweet.created_at);
-        $newTweet.prependTo('body');
-      },4000);
+        var tweet = streams.home[index];
+        var $tweet = $('<div class="newTweet" data-user=' + tweet.user + '></div>');
+        $tweet.text('@' + tweet.user + ': ' + tweet.message + ' - ' + tweet.created_at);
+        $tweet.prependTo('body');
+        if($('div').length > 10) $('div').last().remove();
+      },10000);
+
+      $(this).on('click', 'div', function() {
+        var user = $(this).data('user');
+        var timeline = streams.users[user];
+        
+        for (var i = 0; i < timeline.length; i++) {
+          var thisUser = timeline[i].user;
+          var thisMessage = timeline[i].message;
+          var thisTime = timeline[i].created_at;
+          var line = "<li>@" + thisUser + ": " + thisMessage + " - " + thisTime + "</li>";
+          $('body').append(line);
+        }
+      });
+
+      $(this).on('click', 'li', function() {
+        $('li').remove();
+      });
 
     });
     </script>
